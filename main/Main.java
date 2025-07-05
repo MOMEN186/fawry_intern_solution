@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 import models.CartItem;
 import models.Customer;
 import models.Product;
@@ -9,15 +11,19 @@ import services.CheckOut;
 public class Main {
 
     public static void main(String[] args) {
-        // Shippable, not expirable
-        Product laptop = new Product("Laptop", 1500.00, 10, true, false, 2.5,"01-01-2099");
-        // Shippable, not expirable — heavier and higher shipping cost
-        Product milk = new Product("Milk - 1L", 25.00, 100, true, true, 1.0,"01-08-2025");
-        // Shippable and expirable — perishable item
-        Product ebook = new Product("E-Book: Java Basics", 50.00, 1000, false, false, 0.0,"01-01-2099");
-        // Not shippable, not expirable — digital product
-        Product freshBread = new Product("Fresh Bread", 10.00, 50, true, true, 0.4,"15-07-2025");
-        // Shippable and expirable — light and cheap to ship
+
+        ArrayList<Product>products = new ArrayList<Product>();
+
+      Product p1 = new Product("Milk", 25.0, 50, true, true, 1.0, "01-01-2099");         // Shippable, Expirable, Not Expired
+      Product p3 = new Product("Laptop", 1500.0, 10, true, false, 2.5, "");              // Shippable, Not Expirable
+      Product p4 = new Product("Cheese Guide", 10.0, 100, false, true, 0.0, "01-01-2099"); // Not Shippable, Expirable, Not Expired
+      Product p6 = new Product("E-Book", 50.0, 1000, false, false, 0.0, "");             // Not Shippable, Not Expirable
+      Product p7 = new Product("Fresh Bread", 10.0, 20, true, true, 0.4, "15-07-2025");   // Shippable, Expirable, Not Expired
+      Product p8 = new Product("Old Bread", 2.0, 100, false, false, 0.0, "");         // Not Shippable, Not Expirable
+      Product p2 = new Product("Old Milk", 25.0, 50, true, true, 1.0, "01-01-2020");      // Shippable, Expirable, Expired
+      Product p5 = new Product("Expired License", 5.0, 100, false, true, 0.0, "01-01-2020"); // Not Shippable, Expirable, Expired
+
+
 
   Customer Ahmed = new Customer(
                 "Ahmed Mohab",
@@ -41,17 +47,21 @@ public class Main {
                 "11511",
                 "123 Nile Street",
                 1000.00);
-        populateCart(Ahmed.getCart(), milk, laptop, ebook, freshBread);
-        populateCart(Momen.getCart(), milk, laptop, ebook, freshBread);
+        populateCart(Ahmed.getCart(), p1,p2,p3,p4,p5,p6,p7,p8);
+        populateCart(Momen.getCart(), p1,p2,p3,p4,p5,p6,p7,p8);
 
         new CheckOut(Ahmed.getCart(), Ahmed);
          new CheckOut(Ahmed.getCart(), Momen);
   
     }   
- private static void populateCart(Cart cart, Product milk, Product laptop, Product ebook, Product freshBread) {
-        cart.addProduct(new CartItem(milk, 4));
-        cart.addProduct(new CartItem(laptop, 2));
-        cart.addProduct(new CartItem(ebook, 1));
-        cart.addProduct(new CartItem(freshBread, 10));
+ private static void populateCart(Cart cart, Product p1, Product p2, Product p3, Product p4, Product p5, Product p6, Product p7, Product p8) {
+        cart.addProduct(new CartItem(p1, 4));
+        cart.addProduct(new CartItem(p2, 2));
+        cart.addProduct(new CartItem(p3, 1));
+        cart.addProduct(new CartItem(p4, 10));
+        cart.addProduct(new CartItem(p5, 3));
+        cart.addProduct(new CartItem(p6, 3));
+        cart.addProduct(new CartItem(p7, 3));
+        cart.addProduct(new CartItem(p8, 0));
     }
 }
