@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ArrayList<Product>products = new ArrayList<Product>();
+    
 
       Product p1 = new Product("Milk", 25.0, 50, true, true, 1.0, "01-01-2099");         // Shippable, Expirable, Not Expired
       Product p3 = new Product("Laptop", 1500.0, 10, true, false, 2.5, "");              // Shippable, Not Expirable
